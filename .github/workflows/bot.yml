@@ -1,0 +1,27 @@
+name: Exécuter le bot toutes les 10 minutes
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Toutes les 10 minutes
+  workflow_dispatch:        # Permet d'exécuter manuellement
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Installer les dépendances
+        run: |
+          pip install -r requirements.txt
+
+      - name: Lancer le bot
+        run: |
+          python sync_manga.py
