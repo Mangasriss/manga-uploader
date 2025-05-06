@@ -1,1 +1,1 @@
-worker: python sync_manga.py
+worker: python main.py
